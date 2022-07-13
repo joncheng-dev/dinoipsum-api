@@ -26,6 +26,7 @@ $(document).ready(function () {
     promise.then(
       function (response) {
         const body = JSON.parse(response);
+        console.log(body);
         getElements(body);
       },
       function (error) {
@@ -37,6 +38,14 @@ $(document).ready(function () {
   }
 
   function getElements(response) {
-    $(".showResults").text(`${response}`);
+    for (let i = 0; i < response.length; i++) {
+      let parsed = [];
+      $(".showResults").append(`<p>`);
+      for (let j = 0; j < 20; j++) {
+        parsed.push(response[i][j] + ", ");
+      }
+      $(".showResults").append(parsed);
+      $(".showResults").append(`</p>`);
+    }
   }
 });
